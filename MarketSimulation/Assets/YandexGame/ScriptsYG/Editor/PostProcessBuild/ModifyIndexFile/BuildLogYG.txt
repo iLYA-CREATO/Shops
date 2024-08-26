@@ -1,0 +1,2 @@
+Build path: E:/fails/iT/Project/ShopSimulation/Web
+Build number: 1
