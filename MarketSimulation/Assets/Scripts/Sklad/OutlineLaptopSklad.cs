@@ -1,12 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-
+// Этот скрипт для покупки товара на оптовой базе
 public class OutlineLaptopSklad : MonoBehaviour
 {
     #region  --- Переменные ---
-    // Этот скрипт для покупки товара на оптовой базе
+    public static event Action<int> BuyTovarCorzine; // Сообщаю что что-то купили
+
+   
 
     [SerializeField, Tooltip("Тег объекта на который будем наводится")] private string TagRayCastObject;
 
@@ -42,19 +44,24 @@ public class OutlineLaptopSklad : MonoBehaviour
             allRay.InformationObject(textAction, textObject);
             if (Input.GetKeyDown(KeyCode.E))
             {
-                if(wallet.MinusValuta(addItemSklad.amount))
+                if (wallet.MinusValuta(addItemSklad.amount))
                 {
                     Debug.Log("Процесс покупки");
                     componentkorzin = addItemSklad.componentkorzin;
                     if (componentkorzin.Count != 0)
                     {
-                        BuyTovar();
-                        AppledBuy.SetActive(true);
+                       BuyTovar();
+                       AppledBuy.SetActive(true);
                        StartCoroutine(DeactivateAfterDelay(2.1f, AppledBuy));
                     }
-                }
-                
             }
+            else
+            {
+                WalletNot.SetActive(true);
+                StartCoroutine(DeactivateAfterDelay(2.1f, WalletNot));
+            }
+
+        }
         }
     }
     private void BuyTovar()
@@ -84,13 +91,15 @@ public class OutlineLaptopSklad : MonoBehaviour
         addItemSklad.korzina.Clear();
         
         Debug.Log("Всё купленно");
+
+        addItemSklad.amount = 0;
+        BuyTovarCorzine?.Invoke(addItemSklad.amount);
     }
 
     private IEnumerator DeactivateAfterDelay(float delay, GameObject Activate)
     {
-        // Ждем заданное время
         yield return new WaitForSeconds(delay);
-        // Отключаем объект
+
         Activate.SetActive(false);
     }
 }

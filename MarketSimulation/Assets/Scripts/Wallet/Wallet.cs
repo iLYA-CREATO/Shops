@@ -18,7 +18,7 @@ public class Wallet : MonoBehaviour
     public int Valuta
     {
         get { return valuta; } // Только для чтения
-        set { _valuta = value; } 
+        private set { _valuta = value; } 
     }
 
     public bool MinusValuta(int _valuta)

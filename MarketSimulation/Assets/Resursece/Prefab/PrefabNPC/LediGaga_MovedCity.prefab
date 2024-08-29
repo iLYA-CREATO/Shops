@@ -91,6 +91,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 3781972288248833590}
   m_SourcePrefab: {fileID: 100100000, guid: 63695ac683b3e3c4c984d607fe68e59c, type: 3}
+--- !u!95 &628129878164623677 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 63695ac683b3e3c4c984d607fe68e59c, type: 3}
+  m_PrefabInstance: {fileID: 6475337758483115180}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6132896312032645629 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 63695ac683b3e3c4c984d607fe68e59c, type: 3}
@@ -130,6 +135,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e9c9610e3f7c2b47a97f94ab2544b6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypoints: []
+  animator: {fileID: 628129878164623677}
+  moveSityAnimator: {fileID: 9100000, guid: 52a4753ad204a5241ad6f80b2aa6fcb0, type: 2}
+  idleAnimator: {fileID: 9100000, guid: a679d7b2abdfe0440a2cf8271e14db23, type: 2}
+  pointMapMoved: {fileID: 0}
   waitTimeAtWaypoint: 2
   agent: {fileID: 4820235294053331856}
+  isWalkSity: 1
+  isWalkToLavka: 0

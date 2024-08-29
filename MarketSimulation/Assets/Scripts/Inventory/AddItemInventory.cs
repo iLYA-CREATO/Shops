@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
+
 
 public class AddItemInventory : MonoBehaviour
 {
@@ -37,6 +37,12 @@ public class AddItemInventory : MonoBehaviour
     GameObject instantiateItem;
     SelectItem selectItem;
     Cell cell;
+
+    /// <summary>
+    /// Этот метод создаёт новый Item
+    /// </summary>
+    /// <param name="item"></param>
+    /// <param name="count"></param>
     public void AddNevItem(Item item, int count)
     {
         InventorySlot newItem = new InventorySlot()
@@ -48,7 +54,7 @@ public class AddItemInventory : MonoBehaviour
             typeItem = item._typeItem,
             stackable = item._stackable,
             Value = count,
-    };
+        };
 
         if (SlotInventoryPlayer.Count == 0 || newItem.stackable != true)
         {

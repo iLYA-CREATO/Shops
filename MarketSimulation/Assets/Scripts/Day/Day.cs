@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Day : MonoBehaviour
 {
-    public int day;
+    public int day = 1;
     public TextMeshProUGUI timeText;
 
     public void Update()

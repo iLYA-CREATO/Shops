@@ -6,6 +6,8 @@ using UnityEngine;
 public class AddItemSklad : MonoBehaviour
 {
     #region  --- Переменные ---
+    public static event Action<int> changedTovarCorzine;
+
     public List<ComponentKorzin> componentkorzin;
 
     public List<GameObject> korzina; // Просто буфер
@@ -26,8 +28,6 @@ public class AddItemSklad : MonoBehaviour
     // Пока сделаем в Update
     private void Update()
     {
-        textAmount.text = "Сумма: " + amount;
-
         if(componentkorzin.Count == 0)
         {
             amount = 0;
@@ -106,14 +106,13 @@ public class AddItemSklad : MonoBehaviour
                     newComponentkorzin.textName.text = newComponentkorzin.nameItem;
 
                     newComponentkorzin.textValue.text = newComponentkorzin.value + " шт";
-                    break;
                 }
             }
         }
-        amount = 0;
         for (int i = 0; i < componentkorzin.Count; i++)
         {
             amount += componentkorzin[i].priceOpt * componentkorzin[i].value;
+            changedTovarCorzine?.Invoke(amount); // Мы что-то добавили в корзину
             //Debug.Log(componentkorzin[i].priceOpt + " " + componentkorzin[i].value);
         }
 
@@ -127,6 +126,10 @@ public class AddItemSklad : MonoBehaviour
         {
             Destroy(korzina[i].gameObject);
         }
+        
+        amount = 0;
+        changedTovarCorzine?.Invoke(amount); // Мы что-то изменили в корзине
+
         korzina.Clear();
     }
 }

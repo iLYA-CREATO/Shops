@@ -132,9 +132,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e9c9610e3f7c2b47a97f94ab2544b6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypoints: []
+  animator: {fileID: 5154714798491548299}
+  moveSityAnimator: {fileID: 9100000, guid: 52a4753ad204a5241ad6f80b2aa6fcb0, type: 2}
+  idleAnimator: {fileID: 9100000, guid: a679d7b2abdfe0440a2cf8271e14db23, type: 2}
+  pointMapMoved: {fileID: 0}
   waitTimeAtWaypoint: 0
   agent: {fileID: 1450579971682311989}
+  isWalkSity: 1
+  isWalkToLavka: 0
 --- !u!195 &1450579971682311989
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -157,3 +162,8 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!95 &5154714798491548299 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: b46f4a08047cb0146b48055825e4668d, type: 3}
+  m_PrefabInstance: {fileID: 1649351440911107866}
+  m_PrefabAsset: {fileID: 0}

@@ -122,7 +122,9 @@ public class Cell : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         // Debug.Log(transform.name);
     }
 
-    // Из ящика в инвентарь
+    /// <summary>
+    /// Метод для перетаскивания из Коробок в инвентарь игрока
+    /// </summary>
     public void MoveFromeBoxingToPlayer()
     {
         for (int i = 0; i < addItemInventory.SlotInventoryBoxing.Count; i++)

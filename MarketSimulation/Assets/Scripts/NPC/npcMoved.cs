@@ -1,10 +1,14 @@
 using System.Collections;
-using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class npcMoved : MonoBehaviour
 {
+
+    [SerializeField] private Animator animator;
+    [SerializeField] private AnimatorController moveSityAnimator;
+    [SerializeField] private AnimatorController idleAnimator;
     [Header("C#")]
     [SerializeField] private PointMapMoved pointMapMoved;
     [Space(10)]
@@ -14,7 +18,21 @@ public class npcMoved : MonoBehaviour
     private bool isPointBusy; // тоже для себя
     private int SavePoint; // Просто сохраняю точку которую случайно сгенерил 
 
+
+    public bool isWalkSity = true;
+    public bool isWalkToLavka = false;
+
     void Start()
+    {
+        
+        if(isWalkSity == true)
+        {
+            animator.runtimeAnimatorController = moveSityAnimator;
+            MoveSity();
+        }
+    }
+
+    public void MoveSity()
     {
         int rnd = Random.Range(0, pointMapMoved.pointMap.Count);
         // Проверяем не занята ли точка
@@ -26,7 +44,7 @@ public class npcMoved : MonoBehaviour
 
             agent.SetDestination(pointMapMoved.pointMap[rnd].pointTransform.position); // Установка первой цели
         }
-        else 
+        else
         {
             // если та точка занята то выбираем следующую
             rnd = Random.Range(0, pointMapMoved.pointMap.Count);
@@ -42,17 +60,33 @@ public class npcMoved : MonoBehaviour
 
     void Update()
     {
-        // Проверяем, достигли ли мы текущей метки
-        if (agent.remainingDistance <= agent.stoppingDistance)
+        if (isWalkSity == true)
         {
-            isPointBusy = false;
-            pointMapMoved.pointMap[SavePoint].pointBusy = isPointBusy;
-            // Ждем некоторое время на текущей метке
-            StartCoroutine(WaitAtWaypoint());
-            
+            // Проверяем, достигли ли мы текущей метки
+            if (agent.remainingDistance <= agent.stoppingDistance)
+            {
+                isPointBusy = false;
+                pointMapMoved.pointMap[SavePoint].pointBusy = isPointBusy;
+                // Ждем некоторое время на текущей метке
+                StartCoroutine(WaitAtWaypoint());
+            }
         }
+
+        if (isWalkToLavka == true)
+        {
+            // Проверяем, достигли ли мы текущей метки
+            if (agent.remainingDistance <= agent.stoppingDistance)
+            {
+                animator.runtimeAnimatorController = idleAnimator;
+            }
+        }
+
     }
 
+    public void MoveToLavka(Transform toMove)
+    {
+        agent.SetDestination(toMove.transform.position);
+    }
     private IEnumerator WaitAtWaypoint()
     {
         yield return new WaitForSeconds(waitTimeAtWaypoint);
