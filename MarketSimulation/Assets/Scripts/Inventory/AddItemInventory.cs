@@ -9,6 +9,8 @@ public class AddItemInventory : MonoBehaviour
     [Tooltip("Инвентарь игрока")] public List<InventorySlot> SlotInventoryPlayer;
     [Tooltip("Инвентарь ящика для хранения продукции")]public List<InventorySlot> SlotInventoryBoxing;
 
+
+
     [Tooltip("Слоты игрока")] public int SlotPlayer; // Сам слот инвенторя
     [Tooltip("Слоты ящика")] public int SlotBoxing; // Сам слот инвенторя
 
@@ -24,6 +26,20 @@ public class AddItemInventory : MonoBehaviour
     [SerializeField] private Transform canvas;
     [SerializeField] private Transform contentPlayer;
     [SerializeField] private Transform contentBoxing;
+    #region
+    private Transform contentLavkaOne;
+    private Transform contentLavkaTwo;
+    private Transform contentLavkaThree;
+    private Transform contentLavkaFour;
+    private Transform contentLavkaFive;
+    private Transform contentLavkaSix;
+    private Transform contentLavkaSeven;
+    private Transform contentLavkaEight;
+    private Transform contentLavkaNine;
+    private Transform contentLavkaTen;
+    private Transform contentLavkaEleven;
+    private Transform contentLavkaTwelve;
+    #endregion
     [SerializeField] private AudioSource soundAudioSource;
     [SerializeField] private AudioClip soundClipInventoryButton;
     #endregion
@@ -41,8 +57,8 @@ public class AddItemInventory : MonoBehaviour
     /// <summary>
     /// Этот метод создаёт новый Item
     /// </summary>
-    /// <param name="item"></param>
-    /// <param name="count"></param>
+    /// <param name="item">Сам предмет тоесть Item</param>
+    /// <param name="count">Количество</param>
     public void AddNevItem(Item item, int count)
     {
         InventorySlot newItem = new InventorySlot()
@@ -70,7 +86,12 @@ public class AddItemInventory : MonoBehaviour
             selectItem.UpdateUI(SlotInventoryPlayer[0].Value, item._id);
 
             // Заполняем ячейку данными
-            cell.Init(soundAudioSource, soundClipInventoryButton, canvas, contentPlayer, contentBoxing, gameObject.GetComponent<AddItemInventory>());
+            cell.Init(soundAudioSource, soundClipInventoryButton, canvas, contentPlayer, contentBoxing, 
+                gameObject.GetComponent<AddItemInventory>(),
+                 contentLavkaOne,  contentLavkaTwo,  contentLavkaThree,  contentLavkaFour,
+         contentLavkaFive,  contentLavkaSix,  contentLavkaSeven,  contentLavkaEight,
+         contentLavkaNine,  contentLavkaTen,  contentLavkaEleven,  contentLavkaTwelve);
+
 
             return;
         }
@@ -87,7 +108,11 @@ public class AddItemInventory : MonoBehaviour
 
 
                     // Заполняем ячейку данными
-                    cell.Init(soundAudioSource, soundClipInventoryButton, canvas, contentPlayer, contentBoxing, gameObject.GetComponent<AddItemInventory>());
+                    cell.Init(soundAudioSource, soundClipInventoryButton, canvas, contentPlayer, contentBoxing, 
+                        gameObject.GetComponent<AddItemInventory>(),
+                 contentLavkaOne, contentLavkaTwo, contentLavkaThree, contentLavkaFour,
+                contentLavkaFive, contentLavkaSix, contentLavkaSeven, contentLavkaEight,
+                contentLavkaNine, contentLavkaTen, contentLavkaEleven, contentLavkaTwelve);
                     break;
                 }
                 if(i == SlotInventoryPlayer.Count-1 && SlotInventoryPlayer[i].typeItem != newItem.typeItem)
@@ -103,7 +128,10 @@ public class AddItemInventory : MonoBehaviour
                     selectItem._item = item;
 
                     // Заполняем ячейку данными
-                    cell.Init(soundAudioSource, soundClipInventoryButton, canvas, contentPlayer, contentBoxing, gameObject.GetComponent<AddItemInventory>());
+                    cell.Init(soundAudioSource, soundClipInventoryButton, canvas, contentPlayer, contentBoxing, gameObject.GetComponent<AddItemInventory>(),
+                    contentLavkaOne, contentLavkaTwo, contentLavkaThree, contentLavkaFour,
+                    contentLavkaFive, contentLavkaSix, contentLavkaSeven, contentLavkaEight,
+                    contentLavkaNine, contentLavkaTen, contentLavkaEleven, contentLavkaTwelve);
                     break;
                 }
             }

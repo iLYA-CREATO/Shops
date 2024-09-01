@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using Unity.PlasticSCM.Editor.WebApi;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -12,6 +13,20 @@ public class Cell : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     private Transform canvasGame;
     private Transform contentPlayer;
     private Transform contentBoxing;
+    #region -- Просто куча слотов
+    private Transform contentLavkaOne;
+    private Transform contentLavkaTwo;
+    private Transform contentLavkaThree;
+    private Transform contentLavkaFour;
+    private Transform contentLavkaFive;
+    private Transform contentLavkaSix;
+    private Transform contentLavkaSeven;
+    private Transform contentLavkaEight;
+    private Transform contentLavkaNine;
+    private Transform contentLavkaTen;
+    private Transform contentLavkaEleven;
+    private Transform contentLavkaTwelve;
+    #endregion
     [SerializeField] private CanvasGroup canvasGroup;
 
     [Header("Звук")]
@@ -28,7 +43,11 @@ public class Cell : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
     #endregion
 
-    public void Init(AudioSource soundAudio, AudioClip soundClip, Transform canvas, Transform contentPlayer, Transform contentBoxing, AddItemInventory addItemInventory)
+    public void Init(AudioSource soundAudio, AudioClip soundClip, Transform canvas, Transform contentPlayer,
+        Transform contentBoxing, AddItemInventory addItemInventory,
+        Transform contentLavkaOne, Transform contentLavkaTwo,Transform contentLavkaThree, Transform contentLavkaFour, 
+        Transform contentLavkaFive, Transform contentLavkaSix, Transform contentLavkaSeven, Transform contentLavkaEight,
+        Transform contentLavkaNine, Transform contentLavkaTen, Transform contentLavkaEleven, Transform contentLavkaTwelve)
     {
         // При создании клетки сразу будем вызывать метод чтобы получить данные
         this.canvasGame = canvas;
@@ -37,7 +56,18 @@ public class Cell : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         this.soundAudio = soundAudio;
         this.soundClip = soundClip;
         this.addItemInventory = addItemInventory;
-        
+        this.contentLavkaOne = contentLavkaOne;
+        this.contentLavkaTwo = contentLavkaTwo;
+        this.contentLavkaThree = contentLavkaThree;
+        this.contentLavkaFour = contentLavkaFour;
+        this.contentLavkaFive = contentLavkaFive;
+        this.contentLavkaSix = contentLavkaSix;
+        this.contentLavkaSeven = contentLavkaSeven;
+        this.contentLavkaEight = contentLavkaEight;
+        this.contentLavkaNine = contentLavkaNine;
+        this.contentLavkaTen = contentLavkaTen;
+        this.contentLavkaEleven = contentLavkaEleven;
+        this.contentLavkaTwelve = contentLavkaTwelve; 
     }
 
     #region --- Перемещение объекта между инвенторями ---
@@ -67,12 +97,84 @@ public class Cell : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
             MoveFromeBoxingToPlayer();
             transform.SetParent(contentPlayer);
             pastPositionCell = transform.parent;
+            
         }
         else if (RectTransformUtility.RectangleContainsScreenPoint(contentBoxing as RectTransform, eventData.position))
         {
             // Если в зоне ящика
-
             MoveToBoxing();
+            transform.SetParent(contentBoxing);
+        }
+        else if (RectTransformUtility.RectangleContainsScreenPoint(contentLavkaOne as RectTransform, eventData.position))
+        {
+            // Если в зоне ящика
+            MoveToSlot();
+            transform.SetParent(contentBoxing);
+        }
+        else if (RectTransformUtility.RectangleContainsScreenPoint(contentLavkaTwo as RectTransform, eventData.position))
+        {
+            // Если в зоне ящика
+            MoveToSlot();
+            transform.SetParent(contentBoxing);
+        }
+        else if (RectTransformUtility.RectangleContainsScreenPoint(contentLavkaThree as RectTransform, eventData.position))
+        {
+            // Если в зоне ящика
+            MoveToSlot();
+            transform.SetParent(contentBoxing);
+        }
+        else if (RectTransformUtility.RectangleContainsScreenPoint(contentLavkaFour as RectTransform, eventData.position))
+        {
+            // Если в зоне ящика
+            MoveToSlot();
+            transform.SetParent(contentBoxing);
+        }
+        else if (RectTransformUtility.RectangleContainsScreenPoint(contentLavkaFive as RectTransform, eventData.position))
+        {
+            // Если в зоне ящика
+            MoveToSlot();
+            transform.SetParent(contentBoxing);
+        }
+        else if (RectTransformUtility.RectangleContainsScreenPoint(contentLavkaSix as RectTransform, eventData.position))
+        {
+            // Если в зоне ящика
+            MoveToSlot();
+            transform.SetParent(contentBoxing);
+        }
+        else if (RectTransformUtility.RectangleContainsScreenPoint(contentLavkaSeven as RectTransform, eventData.position))
+        {
+            // Если в зоне ящика
+            MoveToSlot();
+            transform.SetParent(contentBoxing);
+        }
+        else if (RectTransformUtility.RectangleContainsScreenPoint(contentLavkaEight as RectTransform, eventData.position))
+        {
+            // Если в зоне ящика
+            MoveToSlot();
+            transform.SetParent(contentBoxing);
+        }
+        else if (RectTransformUtility.RectangleContainsScreenPoint(contentLavkaNine as RectTransform, eventData.position))
+        {
+            // Если в зоне ящика
+            MoveToSlot();
+            transform.SetParent(contentBoxing);
+        }
+        else if (RectTransformUtility.RectangleContainsScreenPoint(contentLavkaTen as RectTransform, eventData.position))
+        {
+            // Если в зоне ящика
+            MoveToSlot();
+            transform.SetParent(contentBoxing);
+        }
+        else if (RectTransformUtility.RectangleContainsScreenPoint(contentLavkaEleven as RectTransform, eventData.position))
+        {
+            // Если в зоне ящика
+            MoveToSlot();
+            transform.SetParent(contentBoxing);
+        }
+        else if (RectTransformUtility.RectangleContainsScreenPoint(contentLavkaTwelve as RectTransform, eventData.position))
+        {
+            // Если в зоне ящика
+            MoveToSlot();
             transform.SetParent(contentBoxing);
         }
         else
@@ -121,7 +223,29 @@ public class Cell : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
         // Debug.Log(transform.name);
     }
+    public void MoveToSlot()
+    {
+        for (int i = 0; i < addItemInventory.SlotInventoryPlayer.Count; i++)
+        {
 
+            if (addItemInventory.SlotInventoryPlayer[i].ID == index)
+            {
+                bufer = addItemInventory.SlotInventoryPlayer[i];
+            }
+        }
+        bool alreadyExists = addItemInventory.SlotInventoryBoxing.Exists(slot => slot.ID == bufer.ID);
+        if (!alreadyExists)
+        {
+            addItemInventory.SlotInventoryBoxing.Add(bufer);
+            addItemInventory.SlotInventoryPlayer.Remove(bufer);
+        }
+        else
+        {
+            Debug.Log("Предмет уже находится в инвентаре игрока!");
+        }
+
+        // Debug.Log(transform.name);
+    }
     /// <summary>
     /// Метод для перетаскивания из Коробок в инвентарь игрока
     /// </summary>
